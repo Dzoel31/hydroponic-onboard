@@ -1,0 +1,21 @@
+{
+  "name": "hydroponic-onboard-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "generate-api": "node scripts/download-openapi.mjs && npx openapi-typescript-codegen --input openapi.json --output src/api --client fetch"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6",
+    "vue": "^3.5.25",
+    "vue-tsc": "^3.1.8",
+    "openapi-typescript-codegen": "^0.30.0"
+  },
+  "devDependencies": {}
+}
