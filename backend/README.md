@@ -1,6 +1,6 @@
 # Hydroponic Onboard Backend
 
-Backend ini adalah contoh kecil dari alur API smart hydroponic. Fokusnya bukan membuat fitur sebanyak mungkin, tetapi memahami urutan kerja software backend dari konfigurasi sampai endpoint.
+Backend ini adalah contoh kecil dari alur API smart hydroponic. Fokusnya bukan membuat fitur sebanyak mungkin, tetapi memahami urutan kerja software backend dari konfigurasi sampai endpoint. Kalian bisa eksplorasi atau coba coba ubah kode pada repo ini.
 
 ## Why We Use This
 
@@ -13,7 +13,7 @@ Backend ini adalah contoh kecil dari alur API smart hydroponic. Fokusnya bukan m
 
 ## Alur Backend
 
-Urutan yang kamu ingat sudah benar. Versi yang sedikit dirapikan:
+Alur untuk pengembangan Backend dengan FastAPI dari nol bisa dijabarkan sebagai berikut:
 
 1. `config/config.py`: membaca environment variable dari `.env`.
 2. `config/db.py`: membuat engine, `Session`, dan `Base` SQLAlchemy.
@@ -61,8 +61,6 @@ Contoh request:
 ```bash
 uv run pytest
 ```
-
-Test route memakai dependency override, jadi pytest tidak wajib terhubung ke database asli. Ini sengaja dibuat begitu agar anggota baru bisa belajar testing endpoint dulu sebelum masuk ke integration test database.
 
 ## Catatan Untuk Belajar
 
