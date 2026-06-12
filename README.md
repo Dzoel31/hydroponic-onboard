@@ -47,23 +47,20 @@ Repo ini sengaja dibuat kecil agar anggota baru bisa memahami alur dari backend 
 
 Urutan belajar yang disarankan:
 
-1. Baca `.env.example`, lalu pahami environment variable yang dibutuhkan.
-2. Buka `backend/config/config.py` untuk melihat cara `.env` dibaca.
-3. Buka `backend/config/db.py` untuk melihat koneksi database dan session.
-4. Buka `backend/utils/deps.py` untuk melihat dependency session di FastAPI.
-5. Buka `backend/models` untuk melihat bentuk tabel.
-6. Buka `backend/migrations` untuk melihat histori pembuatan tabel.
-7. Buka `backend/schemas` untuk melihat validasi request dan response.
-8. Buka `backend/services` untuk melihat logika akses data.
-9. Buka `backend/routes` untuk melihat endpoint HTTP.
-10. Buka `backend/main.py` untuk melihat aplikasi FastAPI dirangkai.
+1. Baca `backend/Tasks.md`.
+2. Jalankan test level 1 terlebih dahulu.
+3. Baca pesan error dari test.
+4. Buat folder atau file yang diminta oleh task.
+5. Jalankan test lagi sampai berhasil.
+6. Lanjut ke level berikutnya.
+
+Beberapa folder backend seperti `routes`, `schemas`, dan `services` sengaja belum disediakan. Tujuannya agar kalian membuat struktur itu saat benar-benar membutuhkannya.
 
 Jalankan backend:
 
 ```bash
 cd backend
 uv sync
-uv run alembic upgrade head
 uv run uvicorn main:app --reload
 ```
 
@@ -78,11 +75,11 @@ uv run pytest
 
 Urutan belajar yang disarankan:
 
-1. Buka `frontend/src/main.ts` untuk melihat aplikasi Vue dipasang.
-2. Buka `frontend/src/App.vue` untuk melihat state, form, dan tampilan.
-3. Buka `frontend/src/types` untuk melihat tipe data TypeScript.
-4. Buka `frontend/src/services` untuk melihat request ke backend.
-5. Jalankan `npm run generate-api` untuk membuat client API dari OpenAPI backend.
+1. Baca `frontend/Tasks.md`.
+2. Buat folder sesuai nama kalian, misalnya `frontend/aniqah` atau `frontend/syahla`.
+3. Kerjakan level 1 sampai level 4 secara berurutan.
+4. Jalankan test sesuai level yang sedang dikerjakan.
+5. Gunakan error dari test sebagai petunjuk bagian mana yang perlu diperbaiki.
 
 Jalankan frontend:
 
@@ -92,14 +89,103 @@ npm install
 npm run dev
 ```
 
-Generate API frontend:
+Jalankan test frontend:
 
 ```bash
 cd frontend
-npm run generate-api
+npx playwright test tests/level-1-structure.spec.js --grep <nama_kalian>
 ```
 
-Pastikan backend sedang berjalan di `http://127.0.0.1:8000` sebelum generate API.
+Ganti nama test sesuai level yang sedang kalian kerjakan.
+
+## Alur Git Untuk Pemula
+
+Setiap mengerjakan task, buat branch baru agar perubahan kalian tidak langsung bercampur dengan branch utama.
+
+1. Pastikan berada di branch utama dan ambil update terbaru:
+
+```bash
+git switch main
+git pull
+```
+
+2. Buat branch baru dengan nama yang jelas:
+
+```bash
+git switch -c feat/nama-level-yang-dikerjakan
+```
+
+Contoh:
+
+```bash
+git switch -c feat/aniqah-frontend-level-1
+git switch -c feat/syahla-backend-level-2
+```
+
+3. Kerjakan task dan jalankan test.
+
+4. Cek file yang berubah:
+
+```bash
+git status
+```
+
+5. Masukkan file yang ingin dicommit:
+
+```bash
+git add <nama-file>
+```
+
+Jika yakin semua perubahan memang mau dicommit:
+
+```bash
+git add .
+```
+
+6. Commit dengan format Conventional Commit:
+
+```bash
+git commit -m "type(scope): pesan singkat"
+```
+
+Format yang dipakai:
+
+```txt
+type(scope): pesan singkat
+```
+
+Jenis `type` yang umum dipakai:
+
+- `feat`: menambah fitur atau task baru.
+- `fix`: memperbaiki bug.
+- `test`: menambah atau memperbaiki test.
+- `docs`: mengubah dokumentasi.
+- `refactor`: merapikan kode tanpa mengubah perilaku.
+- `chore`: perubahan pendukung seperti konfigurasi.
+
+Contoh commit message:
+
+```bash
+git commit -m "feat(frontend): add dashboard structure"
+git commit -m "feat(backend): add sensor schema"
+git commit -m "test(frontend): add realtime sensor check"
+git commit -m "docs: add backend learning guide"
+```
+
+7. Push branch kalian:
+
+```bash
+git push -u origin <nama-branch>
+```
+
+8. Buka Pull Request di GitHub, lalu minta review.
+
+Tips kecil:
+
+- Commit sebaiknya kecil dan fokus pada satu level atau satu perbaikan.
+- Jangan commit file `.env` karena berisi konfigurasi lokal.
+- Jika ragu, jalankan `git status` dulu sebelum `git add`.
+- Jika test masih gagal, tulis di Pull Request bagian mana yang masih membingungkan.
 
 ## Why We Use This
 
