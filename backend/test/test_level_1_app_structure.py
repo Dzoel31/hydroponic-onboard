@@ -6,7 +6,7 @@ from conftest import get_fastapi_app
 def test_level_1_main_memiliki_fastapi_app():
     app = get_fastapi_app()
 
-    assert app.title, "FastAPI app sebaiknya punya title agar mudah dikenali di /docs."
+    assert app.title == "Hydroponic Onboard API", "FastAPI app sebaiknya punya title agar mudah dikenali di /docs."
 
 
 def test_level_1_app_memasang_route_api_sensors():
@@ -15,7 +15,8 @@ def test_level_1_app_memasang_route_api_sensors():
     sensor_routes = [
         route
         for route in app.routes
-        if isinstance(route, APIRoute) and route.path == "/api/sensors"
+        if isinstance(route, APIRoute)
+        and f"{app.root_path}{route.path}".replace("//", "/") == "/api/sensors"
     ]
 
     assert sensor_routes, (
